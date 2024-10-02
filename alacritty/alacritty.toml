@@ -1,0 +1,4 @@
+import = ["~/.config/alacritty/dracula.toml"]
+[font]
+normal = { family = "FiraCode Nerd Font", style = "Regular" }
+size = 12.0
