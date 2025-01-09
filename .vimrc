@@ -1,4 +1,4 @@
-syntax on
+syntax off
 colorscheme sorbet
 set relativenumber
 set number
