@@ -13,13 +13,14 @@
 (setq display-line-numbers 'relative)
 (setq backup-directory-alist '(("." . "~/.emacs.saves")))
 (setq custom-file "~/.emacs.custom.el")
-(set-face-attribute 'default nil :font "FiraCode Nerd Font-16")
+(set-face-attribute 'default nil :font "GohuFont14 Nerd Font-18")
 (setq dired-dwim-target t)
 
 (setq treesit-language-source-alist
   '((c3 "https://github.com/c3lang/tree-sitter-c3")))
 
-(rc/require-theme 'badwolf)
+(rc/require-theme 'phoenix-dark-pink)
+
 
 (rc/require 'ido-completing-read+)
 (ido-mode 1)
@@ -37,11 +38,17 @@
 
 (rc/require 'crystal-mode)
 
-(add-hook 'ruby-mode-hook 'robe-mode)
+(rc/require 'markdown-mode)
 
 (add-hook 'after-init-hook 'global-company-mode)
+
+(require 'simpc-mode)
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 
 (require 'odin-mode)
 (require 'c3-ts-mode)
 (setq c3-ts-mode-indent-offset 4)
 (setq ruby-indent-level 4)
+
+
+
