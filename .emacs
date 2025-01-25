@@ -13,7 +13,7 @@
 (setq display-line-numbers 'relative)
 (setq backup-directory-alist '(("." . "~/.emacs.saves")))
 (setq custom-file "~/.emacs.custom.el")
-(set-face-attribute 'default nil :font "GohuFont14 Nerd Font-18")
+(set-face-attribute 'default nil :font "GohuFont 14 Nerd Font-18")
 (setq dired-dwim-target t)
 
 (setq treesit-language-source-alist
@@ -51,4 +51,11 @@
 (setq ruby-indent-level 4)
 
 
-
+(rc/require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
