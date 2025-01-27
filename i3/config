@@ -196,7 +196,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # Lock the screen
-bindsym $mod+Shift+x exec i3lock 
+#bindsym $mod+Shift+x exec "i3lock -i ./Downloads/wallpaper.png"
+bindsym $mod+Shift+x exec "betterlockscreen -l --off 10 --show-layout" 
 
 #Screenshots
 bindsym Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
@@ -231,11 +232,21 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Dracula colors
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+# client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+# client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+# client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+# client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+# client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+
+# client.background       #F8F8F2
+
+# Ivulai Colors
+# class                 border  backgr. text    indicator child_border
+client.focused          #EA638C #EA638C #FFD9DA #EA638C   #EA638C
+client.focused_inactive #89023E #89023E #FFD9DA #EA638C   #89023E
+client.unfocused        #1B2021 #1B2021 #FFD9DA #EA638C   #282A36
+client.urgent           #44475A #FF5555 #FFD9DA #EA638C   #FF5555
+client.placeholder      #282A36 #282A36 #FFD9DA #EA638C   #282A36
 
 client.background       #F8F8F2
 

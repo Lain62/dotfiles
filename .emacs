@@ -13,13 +13,15 @@
 (setq display-line-numbers 'relative)
 (setq backup-directory-alist '(("." . "~/.emacs.saves")))
 (setq custom-file "~/.emacs.custom.el")
-(set-face-attribute 'default nil :font "GohuFont 14 Nerd Font-18")
+(set-face-attribute 'default nil :font "Iosevka Nerd Font-20")
 (setq dired-dwim-target t)
 
 (setq treesit-language-source-alist
   '((c3 "https://github.com/c3lang/tree-sitter-c3")))
 
-(rc/require-theme 'phoenix-dark-pink)
+;;(rc/require-theme 'phoenix-dark-pink)
+(require 'rosevu-theme)
+(load-theme 'rosevu t)
 
 
 (rc/require 'ido-completing-read+)
