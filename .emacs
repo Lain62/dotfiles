@@ -13,7 +13,13 @@
 (setq display-line-numbers 'relative)
 (setq backup-directory-alist '(("." . "~/.emacs.saves")))
 (setq custom-file "~/.emacs.custom.el")
-(set-face-attribute 'default nil :font "Iosevka Nerd Font-20")
+
+(defun vu/get-default-font ()
+  (cond
+   ((eq system-type 'windows-nt) "Iosevka NF-20")
+   ((eq system-type 'gnu/linux) "Iosevka Nerd Font-20")))
+
+(set-face-attribute 'default nil :font (vu/get-default-font))
 (setq dired-dwim-target t)
 
 (setq treesit-language-source-alist
@@ -35,8 +41,14 @@
 
 (electric-pair-mode 1)
 
-(rc/require 'cl-lib)
-(rc/require 'magit)
+;; Disabled for windows cuz i cant get it to work
+(defun vu/get-magit ()
+  (cond
+   ((eq system-type 'gnu/linux)
+	(rc/require 'cl-lib)
+	(rc/require 'magit))))
+
+(vu/get-magit)
 
 (rc/require 'crystal-mode)
 
