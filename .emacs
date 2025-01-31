@@ -41,17 +41,18 @@
 (rc/require 'crystal-mode)
 
 (rc/require 'markdown-mode)
+(rc/require 'company)
 
 (add-hook 'after-init-hook 'global-company-mode)
 
 (require 'simpc-mode)
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
-
+(require 'squirrel-mode)
 (require 'odin-mode)
 (require 'c3-ts-mode)
 (setq c3-ts-mode-indent-offset 4)
 (setq ruby-indent-level 4)
-
+(setq-default tab-width 4)
 
 (rc/require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
