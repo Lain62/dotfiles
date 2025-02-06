@@ -14,7 +14,7 @@ set $mod Mod4
 
 # Set Var
 set $term "alacritty"
-set $menu "rofi -show drun -lines 3 -font Iosevka Nerd Font 12"
+set $menu "rofi -show drun -font Iosevka Nerd Font 12"
 
 set $left h
 set $down j
