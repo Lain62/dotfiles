@@ -30,7 +30,7 @@ exec xrandr --output eDP --mode 1920x1080 --pos 0x0 --scale 1x1
 exec xrandr --output HDMI-A-0 --mode 1920x1080 --right-of eDP --scale 1x1
 
 # Swaps caps-lock and lctrl
-exec setxkbmap -option ctrl:swapcaps
+exec_always setxkbmap -option ctrl:swapcaps
 
 # Sets up polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh

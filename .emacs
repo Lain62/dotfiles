@@ -22,13 +22,9 @@
 (set-face-attribute 'default nil :font (vu/get-default-font))
 (setq dired-dwim-target t)
 
-(setq treesit-language-source-alist
-  '((c3 "https://github.com/c3lang/tree-sitter-c3")))
-
 ;;(rc/require-theme 'phoenix-dark-pink)
 (require 'rosevu-theme)
 (load-theme 'rosevu t)
-
 
 (rc/require 'ido-completing-read+)
 (ido-mode 1)
@@ -61,10 +57,17 @@
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 (require 'squirrel-mode)
 (require 'odin-mode)
-(require 'c3-ts-mode)
-(setq c3-ts-mode-indent-offset 4)
 (setq ruby-indent-level 4)
 (setq-default tab-width 4)
+
+(rc/require 'multiple-cursors)
+
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->")         'mc/mark-next-like-this)
+(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
 
 (rc/require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -76,3 +79,36 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 ;; add support for astro even tho its not officially supported
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+
+;;Moving region stolen from emacs wiki	
+(defun move-region (start end n)
+  "Move the current region up or down by N lines"
+  (interactive "r\np")
+  (let ((line-text (delete-and-extract-region start end)))
+	(forward-line n)
+	(let ((start (point)))
+	  (insert line-text)
+	  (setq deactivate-mark nil)
+	  (set-mark start))))
+
+(defun move-region-up (start end n)
+  "Move the current line up by N lines"
+  (interactive "r\np")
+  (move-region start end (if (null n) - 1 (- n))))
+
+(defun move-region-down (start end n)
+  "Move the current line down by N lines"
+  (interactive "r\np")
+  (move-region start end (if (null n) 1 n)))
+
+
+(global-set-key (kbd "M-<up>") 'move-region-up)
+(global-set-key (kbd "M-<down>") 'move-region-down)
+
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs '((odin-mode) . ("ols"))))
+
+(require 'eglot-booster)
+
+(add-hook 'odin-mode-hook #'eglot-ensure)
+(add-hook 'eglot 'eglot-booster-mode)
