@@ -35,8 +35,9 @@
 (rc/require 'ido-yes-or-no)
 (ido-yes-or-no-mode 1)
 
-(electric-pair-mode 1)
-
+;; (electric-pair-mode 1)
+(rc/require 'paredit)
+(add-hook 'after-init-hook 'paredit-mode)
 ;; Disabled for windows cuz i cant get it to work
 (defun vu/get-magit ()
   (cond
@@ -49,9 +50,9 @@
 (rc/require 'crystal-mode)
 
 (rc/require 'markdown-mode)
-(rc/require 'company)
+;; (rc/require 'company)
 
-(add-hook 'after-init-hook 'global-company-mode)
+;;(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'simpc-mode)
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
@@ -80,35 +81,30 @@
 ;; add support for astro even tho its not officially supported
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 
-;;Moving region stolen from emacs wiki	
-(defun move-region (start end n)
-  "Move the current region up or down by N lines"
-  (interactive "r\np")
-  (let ((line-text (delete-and-extract-region start end)))
-	(forward-line n)
-	(let ((start (point)))
-	  (insert line-text)
-	  (setq deactivate-mark nil)
-	  (set-mark start))))
+(rc/require 'smex)
+(global-set-key (kbd "M-x") 'smex)
 
-(defun move-region-up (start end n)
-  "Move the current line up by N lines"
-  (interactive "r\np")
-  (move-region start end (if (null n) - 1 (- n))))
+(rc/require 'move-text)
+(global-set-key (kbd "M-p") 'move-text-up)
+(global-set-key (kbd "M-n") 'move-text-down)
 
-(defun move-region-down (start end n)
-  "Move the current line down by N lines"
-  (interactive "r\np")
-  (move-region start end (if (null n) 1 n)))
+(require 'dired-x)
+(rc/require 'restart-emacs)
 
+(rc/require 'yasnippet)
+;; (rc/require 'markdown-mode)
+(rc/require 'f)
+(rc/require 's)
 
-(global-set-key (kbd "M-<up>") 'move-region-up)
-(global-set-key (kbd "M-<down>") 'move-region-down)
+(require 'dired-x)
+(setq dired-omit-files
+      (concat dired-omit-files "\\|^\\..+$"))
+(setq-default dired-dwim-target t)
+(setq dired-listing-switches "-alh")
+(setq dired-mouse-drag-files t)
 
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs '((odin-mode) . ("ols"))))
+(rc/require 'popup)
 
-(require 'eglot-booster)
-
-(add-hook 'odin-mode-hook #'eglot-ensure)
-(add-hook 'eglot 'eglot-booster-mode)
+;; (add-to-list 'load-path "~/Projects/dumb-jump/")
+;; (require 'dumb-jump)
+;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
