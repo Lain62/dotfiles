@@ -10,6 +10,7 @@
 (column-number-mode 1)
 (show-paren-mode 1)
 (global-display-line-numbers-mode 1)
+(setq-default indent-tabs-mode nil)
 (setq display-line-numbers 'relative)
 (setq backup-directory-alist '(("." . "~/.emacs.saves")))
 (setq custom-file "~/.emacs.custom.el")
@@ -104,7 +105,21 @@
 (setq dired-mouse-drag-files t)
 
 (rc/require 'popup)
+(rc/require 'd-mode)
 
 ;; (add-to-list 'load-path "~/Projects/dumb-jump/")
 ;; (require 'dumb-jump)
-;; (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+(rc/require 'dumb-jump)
+(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+(rc/require 'go-mode)
+(rc/require 'lua-mode)
+
+
+(rc/require 'org-modern)
+
+(require 'c3-mode)
+
+(add-hook 'd-mode-hook
+          (lambda ()
+            (setq c-basic-offset 4)
+            (setq tab-width 4)))

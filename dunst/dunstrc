@@ -1,0 +1,27 @@
+[global]
+follow=mouse
+width=(0, 200)
+height=(0, 200)
+origin=top-right
+font="Iosevka 12"
+corners=all
+corner_radius=10
+mouse_left_click=do_action, open_url, close_current
+min_icon_size=32
+max_icon_size=48
+icon_position=right
+
+[urgency_low]
+background="#B7A0FF"
+foreground="#F0F0F0"
+highlight="#F8A9B4"
+
+[urgency_normal]
+highlight="#1B2021"
+foreground="#F0F0F0"
+background="#A24174"
+
+[urgency_critical]
+background="#B23350"
+foreground="#F0F0F0"
+highlight="#F8A9B4"

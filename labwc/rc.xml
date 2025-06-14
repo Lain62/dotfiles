@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<labwc_config>
+
+	<keyboard>
+		<default />
+		<keybind key="W-d">
+			<action name="Execute" command="rofi -show drun -font Iosevka Nerd Font 12"/>
+		</keybind>
+	</keyboard>
+</labwc_config>

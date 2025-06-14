@@ -4,10 +4,13 @@ MONITORCOUNT="$(xrandr --query | grep "\bconnected\b" | wc -l)"
 
 if [ $MONITORCOUNT == 2 ]; then
 	# Sets up my laptop monitor
-xrandr --output eDP --mode 1920x1080 --pos 0x0 --scale 1x1
-# Sets up xp-pen artist 12 (2nd gen) graphic tablet
-xrandr --output HDMI-A-0 --mode 1920x1080 --right-of eDP --scale 1x1
+	xrandr --output eDP --mode 1920x1080 --pos 0x0 --scale 1x1
+	# Sets up xp-pen artist 12 (2nd gen) graphic tablet
+	xrandr --output HDMI-A-0 --mode 1920x1080 --right-of eDP --scale 1x1
+	#xrandr --output HDMI-A-0 --mode 1920x1080 --pos 0x0 --scale 1x1
+	echo "setting up 2 monitors"
 else
 	xrandr --auto
+	echo "setting up 1 monitor"
 fi
 
