@@ -114,8 +114,9 @@
 (rc/require 'go-mode)
 (rc/require 'lua-mode)
 
-
 (rc/require 'org-modern)
+(rc/require 'rainbow-mode)
+
 
 (require 'c3-mode)
 
