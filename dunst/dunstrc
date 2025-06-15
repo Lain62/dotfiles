@@ -1,6 +1,6 @@
 [global]
 follow=mouse
-width=(0, 200)
+width=(0, 400)
 height=(0, 200)
 origin=top-right
 font="Iosevka 12"
