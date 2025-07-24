@@ -21,11 +21,11 @@
    '(frame-background-mode (quote dark)))
 
   (custom-theme-set-faces 'rosevu
-            `(default ((t (:foreground ,rosevu-white :background ,rosevu-black))))
+            `(default ((t (:foreground ,rosevu-cream :background ,rosevu-black))))
             `(cursor ((t (:background ,rosevu-pink ))))
             `(fringe ((t (:background ,rosevu-black-lighter ))))
             `(mode-line ((t (:foreground ,rosevu-cream :background ,rosevu-black-lighter ))))
-            `(region ((t (:foreground ,rosevu-black :background ,rosevu-yellow))))
+            `(region ((t (:foreground ,rosevu-pink-darker :background ,rosevu-yellow))))
             `(secondary-selection ((t (:background ,rosevu-blue ))))
             `(font-lock-builtin-face ((t (:foreground ,rosevu-pink ))))
             `(font-lock-comment-face ((t (:foreground  ,rosevu-purple))))

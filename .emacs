@@ -119,6 +119,7 @@
 
 
 (require 'c3-mode)
+(rc/require 'rust-mode)
 
 (add-hook 'd-mode-hook
           (lambda ()
