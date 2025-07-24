@@ -30,7 +30,7 @@ default_border pixel 1
 # exec_always xrandr --output HDMI-A-0 --mode 1920x1080 --right-of eDP --scale 1x1
 
 # Sets up my laptop monitor automatically
-exec_always --no-startup-id $HOME/.config/i3/monitor.sh
+exec_always --no-startup-id $HOME/.scripts/monitor
 
 # Swaps caps-lock and lctrl
 exec_always setxkbmap -option ctrl:swapcaps
