@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# dbus-run-session niri --session
+dbus-launch niri --session

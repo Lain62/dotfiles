@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "bottom",
-    "modules-left": ["sway/workspaces"],
+    "modules-left": ["niri/workspaces"],
     "modules-center": [],
     "modules-right": ["battery", "clock", "tray"],
     "battery": {
@@ -9,9 +9,21 @@
         "format-icons": ["", "", "", "", ""]
     },
     "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
+        "format": "{:%a, %d. %b  %H:%M}"
     },
     "tray": {
     	"icon-size": 20,   	
-    }
+    },
+    "niri/workspaces": {
+    	"format": "{icon}",
+    	"format-icons": {
+    		// Named workspaces
+    		// (you need to configure them in niri)
+    
+    		// Icons by state
+    		"active": "",
+    		"default": ""
+    	}
+    },
+    
 }
