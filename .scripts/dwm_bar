@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# XA_WM_NAME
+# xsetroot -name "thing"
+
+day_str() {
+	local num="$1" 
+	if [[ $num == "1" ]]; then
+	  echo "Monday"
+	elif [[ $num == "2" ]]; then
+	  echo "Tuesday"
+	elif [[ $num == "3" ]]; then
+	  echo "Wednesday"
+	elif [[ $num == "4" ]]; then
+	  echo "Thursday"
+	elif [[ $num == "5" ]]; then
+	  echo "Friday"
+	elif [[ $num == "6" ]]; then
+	  echo "Saturday"
+	else
+	  echo "Sunday"
+	fi
+}
+
+batt_stat_str() {
+	local status="$1"
+	if [[ $status == "Charging" ]]; then
+		echo "Plugged"
+	elif [[ $status == "Discharging" ]]; then
+		echo ""
+	elif [[ $status == "Full" ]]; then
+		echo "Full"
+	else
+		echo "What"	
+	fi
+}
+
+while [ true ]
+do
+	sleep 1
+	d=$(date '+%u')
+	day=$(day_str $d)
+	battery=$(cat /sys/class/power_supply/BAT1/capacity)
+	bat_status=$(cat /sys/class/power_supply/BAT1/status)
+	bat_stat=$(batt_stat_str $bat_status)
+	date_time=$(date '+%F %H:%M:%S')
+	xsetroot -name "$bat_stat $battery% $day $date_time"
+done
