@@ -25,11 +25,11 @@ day_str() {
 batt_stat_str() {
 	local status="$1"
 	if [[ $status == "Charging" ]]; then
-		echo "Plugged"
+		echo "󰂄"
 	elif [[ $status == "Discharging" ]]; then
-		echo ""
+		echo "󰁹"
 	elif [[ $status == "Full" ]]; then
-		echo "Full"
+		echo "󰂏"
 	else
 		echo "What"	
 	fi
@@ -43,6 +43,9 @@ do
 	battery=$(cat /sys/class/power_supply/BAT1/capacity)
 	bat_status=$(cat /sys/class/power_supply/BAT1/status)
 	bat_stat=$(batt_stat_str $bat_status)
-	date_time=$(date '+%F %H:%M:%S')
-	xsetroot -name "$bat_stat $battery% $day $date_time"
+	TOTALDOWN=$(ifconfig wlp4s0| grep "RX packets" | awk {'print $6 $7'})
+	TOTALUP=$(ifconfig wlp4s0| grep "TX packets" | awk {'print $6 $7'})
+	dat=$(date '+%F')
+	tim=$(date '+%H:%M:%S')
+	xsetroot -name "[ 󰕒 $TOTALUP 󰇚 $TOTALDOWN I $bat_stat $battery% I $day I $dat I $tim ]"
 done
