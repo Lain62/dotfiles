@@ -18,7 +18,7 @@
 (defun vu/get-default-font ()
   (cond
    ((eq system-type 'windows-nt) "Iosevka NF-20")
-   ((eq system-type 'gnu/linux) "Iosevka Nerd Font-20")))
+   ((eq system-type 'gnu/linux) "ZedMono Nerd Font-18")))
 
 (set-face-attribute 'default nil :font (vu/get-default-font))
 (setq dired-dwim-target t)
@@ -43,8 +43,8 @@
 (defun vu/get-magit ()
   (cond
    ((eq system-type 'gnu/linux)
-	(rc/require 'cl-lib)
-	(rc/require 'magit))))
+    (rc/require 'cl-lib)
+    (rc/require 'magit))))
 
 (vu/get-magit)
 
@@ -59,7 +59,7 @@
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 (require 'squirrel-mode)
 (require 'odin-mode)
-(setq ruby-indent-level 4)
+;; (setq ruby-indent-level 4)
 (setq-default tab-width 4)
 
 (rc/require 'multiple-cursors)
@@ -120,8 +120,9 @@
 
 (require 'c3-mode)
 (rc/require 'rust-mode)
+(setq whitespace-style '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark))
 
-(add-hook 'd-mode-hook
-          (lambda ()
-            (setq c-basic-offset 4)
-            (setq tab-width 4)))
+;; (add-hook 'd-mode-hook
+;;           (lambda ()
+;;             (setq c-basic-offset 4)
+;;             (setq tab-width 4)))
