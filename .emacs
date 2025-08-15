@@ -32,6 +32,7 @@
 (ido-everywhere 1)
 (ido-ubiquitous-mode 1)
 (setq magit-completing-read-function 'magit-ido-completing-read)
+(global-whitespace-mode 1)
 
 (rc/require 'ido-yes-or-no)
 (ido-yes-or-no-mode 1)

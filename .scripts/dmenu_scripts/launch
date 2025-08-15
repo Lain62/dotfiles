@@ -1,0 +1,14 @@
+#!/bin/bash
+
+x="-x 480"
+y="-y 100"
+z="-z 960"
+l="-l 30"
+sf="-sf \"#30343f\"" #black
+sb="-sb \"#f8a9b4\"" #pink
+nf="-nf \"#f0f0f0\"" #white
+nb="-nb \"#30343f\"" #black
+font="-fn \"ZedMono Nerd Font:size=14\""
+# dmenu $l $x $y $z $font $nb $nf $sb $sf 
+#dmenu $l $x $y $z $font
+eval "dmenu -i $l $x $y $z $font $nb $nf $sb $sf $@"

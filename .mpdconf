@@ -1,0 +1,22 @@
+music_directory "~/Audios/Music"
+
+playlist_directory "~/.mpd_files/playlists"
+
+db_file "~/.mpd_files/database.db"
+
+pid_file "~/.mpd_files/mpd.pid"
+
+state_file "~/.mpd_files/mpdstate"
+
+auto_update "yes"
+
+user "lain62"
+
+
+# group "audio"
+
+audio_output {
+  type  "pipewire"
+  name  "PipeWire Sound Server"
+}
+

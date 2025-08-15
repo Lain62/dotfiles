@@ -1,0 +1,57 @@
+#!/bin/bash
+
+power="Power options"
+music="Music Player"
+music_folder="Music Folder"
+projects="Open Project"
+dotfiles="Open dotfiles"
+task_mgr="Open Task Manager"
+cmd=""
+cmd+="$music\n"
+cmd+="$projects\n"
+cmd+="$music_folder\n"
+cmd+="$dotfiles\n"
+cmd+="$task_mgr\n"
+cmd+="$power"
+
+open_folder_in() {
+    local emacs="Emacs Client"
+    local emacs_nw="Emacs Terminal"
+    local term="Terminal"
+    local yazi="yazi"
+    local cmd=""; cmd+="$term\n"; cmd+="$yazi\n"; cmd+="$emacs\n"; cmd+="$emacs_nw"
+    local out=$( echo -e $cmd | dmenu -c -z 150 -noi -p "Open in:")
+    if [[ $out == $emacs ]]; then
+        emacs $1
+    elif [[ $out == $emacs_nw ]]; then
+        $TERMINAL -e emacs -nw $1
+    elif [[ $out == $term ]]; then
+        cd $1; $TERMINAL
+    elif [[ $out == $yazi ]]; then
+        $TERMINAL -e yazi $1
+    fi
+}
+
+open_project() {
+
+    local out=$( cd ~/Programming/Projects; ls | dmenu -c -z 300 -p "$projects" )
+    if [[ -n $out ]]; then        
+        open_folder_in "$HOME/Programming/Projects/$out"
+    fi 
+}
+
+output=$(echo -e $cmd | dmenu -c -z 200 -p "Main Menu" )
+
+if [[ $output == $power ]]; then
+    $HOME/.scripts/dmenu_scripts/power_options
+elif [[ $output == $music ]]; then
+    $TERMINAL -e ncmpcpp
+elif [[ $output == $task_mgr ]]; then
+    $TERMINAL -e btop
+elif [[ $output == $projects ]]; then
+    open_project
+elif [[ $output == $music_folder ]]; then
+    open_folder_in "$HOME/Audios/Music"
+elif [[ $output == $dotfiles ]]; then
+    open_folder_in "$HOME/Programming/Projects/dotfiles"
+fi  

@@ -1,0 +1,79 @@
+#!/bin/env ruby
+
+def day_str(num)
+  case num.to_i
+    when 1 then return "Monday"
+    when 2 then return "Tuesday"
+    when 3 then return "Wednesday"
+    when 4 then return "Thursday"
+    when 5 then return "Friday"
+    when 6 then return "Saturday"
+    when 7 then return "Sunday"
+  end
+  return ""
+end
+
+def bat_discharge_icon(capacity)
+  return "󰁺" if capacity <= 10
+  return "󰁻" if capacity <= 20
+  return "󰁼" if capacity <= 30
+  return "󰁽" if capacity <= 40
+  return "󰁾" if capacity <= 50
+  return "󰁿" if capacity <= 60
+  return "󰂀" if capacity <= 70
+  return "󰂁" if capacity <= 80
+  return "󰂂" if capacity <= 90
+  return "󰁹" if capacity <= 100
+end
+
+def bat_charge_icon(capacity)
+  return "󰢜" if capacity <= 10
+  return "󰂆" if capacity <= 20
+  return "󰂇" if capacity <= 30
+  return "󰂈" if capacity <= 40
+  return "󰢝" if capacity <= 50
+  return "󰂉" if capacity <= 60
+  return "󰢞" if capacity <= 70
+  return "󰢞" if capacity <= 80
+  return "󰂋" if capacity <= 90
+  return "󰂅" if capacity <= 100
+end
+
+def bat_stat_icon(status, capacity)
+  case status
+  when "Charging" then return bat_charge_icon(capacity.to_i)
+  when "Discharging" then return bat_discharge_icon(capacity.to_i)
+  when "Full" then return "󱈏"
+  end
+  return "󰂑"
+end
+
+def icons_spin(icon)
+  icon = icon.split
+  first = icon.shift
+  return icon.push(first).join(" ")
+end
+
+def command(array_cmd)
+  f = IO.popen(array_cmd).read.strip
+end
+
+icons = +"  󰊟 󰊜   󰃣  󰩃 "
+while true
+  bat_stat = command ["cat", "/sys/class/power_supply/BAT1/status"]
+  bat_cap = command ["cat", "/sys/class/power_supply/BAT1/capacity"]
+  day = day_str( command ["date", '+%u'] )
+  date = command ["date", '+%F']
+  time = command ["date", '+%H:%M:%S']
+  icons = icons_spin(icons) unless bat_stat == "Discharging"
+  user = command ["whoami"]
+  host = command ["hostname"]
+
+  out = "\"| #{user}@#{host} | #{icons}  | #{bat_stat_icon(bat_stat, bat_cap)} #{bat_cap}% | #{day} #{date} | #{time} |\""
+  system("xsetroot -name #{out}")
+  if bat_stat == "Discharging"
+    sleep(5)
+  else
+    sleep(0.5)
+  end
+end

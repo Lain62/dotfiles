@@ -1,0 +1,10 @@
+#!/bin/bash
+
+res=$(echo -e "Lock screen\nShutdown\nReboot" | dmenu -c -z 200 -noi -p "Power Options" )
+if [[ $res == "Shutdown" ]]; then
+    loginctl poweroff
+elif [[ $res == "Reboot" ]]; then
+    loginctl reboot
+elif [[ $res == "Lock screen" ]]; then
+    slock
+fi

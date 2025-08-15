@@ -1,0 +1,13 @@
+#!/bin/bash
+# Script to move mouse every so often
+
+if [ -z DISPLAY ]; then
+   DISPLAY=:0
+fi
+while true; do
+    sleep 2
+    xdotool mousemove_relative -- -100 -10
+    sleep 2
+    xdotool mousemove_relative -- 100 10
+done
+

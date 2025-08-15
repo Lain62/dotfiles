@@ -1,0 +1,102 @@
+#!/bin/bash
+
+# XA_WM_NAME
+# xsetroot -name "thing"
+
+day_str() {
+	local num="$1" 
+	if [[ $num == "1" ]]; then
+	  echo "Monday"
+	elif [[ $num == "2" ]]; then
+	  echo "Tuesday"
+	elif [[ $num == "3" ]]; then
+	  echo "Wednesday"
+	elif [[ $num == "4" ]]; then
+	  echo "Thursday"
+	elif [[ $num == "5" ]]; then
+	  echo "Friday"
+	elif [[ $num == "6" ]]; then
+	  echo "Saturday"
+	elif [[ $num == "7" ]]; then
+	  echo "Sunday"
+	fi
+}
+
+bat_discharge_icon() {
+    if [[ "$1" -lt "10" ]]; then
+        echo "󰁺"
+    elif [[ "$1" -lt "20" ]]; then
+        echo "󰁻"
+    elif [[ "$1" -lt "30" ]]; then
+        echo "󰁼"
+    elif [[ "$1" -lt "40" ]]; then
+        echo "󰁽" 
+    elif [[ "$1" -lt "50" ]]; then
+        echo "󰁾" 
+    elif [[ "$1" -lt "60" ]]; then
+        echo "󰁿" 
+    elif [[ "$1" -lt "70" ]]; then
+        echo "󰂀" 
+    elif [[ "$1" -lt "80" ]]; then
+        echo "󰂁" 
+    elif [[ "$1" -lt "90" ]]; then
+        echo "󰂂" 
+    elif [[ "$1" -lt "100" ]]; then
+        echo "󰁹"  
+    fi
+}
+
+bat_charge_icon() {
+    if [[ "$1" -lt "10" ]]; then
+        echo "󰢜"
+    elif [[ "$1" -lt "20" ]]; then
+        echo "󰂆"
+    elif [[ "$1" -lt "30" ]]; then
+        echo "󰂇"
+    elif [[ "$1" -lt "40" ]]; then
+        echo "󰂈" 
+    elif [[ "$1" -lt "50" ]]; then
+        echo "󰢝" 
+    elif [[ "$1" -lt "60" ]]; then
+        echo "󰂉" 
+    elif [[ "$1" -lt "70" ]]; then
+        echo "󰢞" 
+    elif [[ "$1" -lt "80" ]]; then
+        echo "󰢞" 
+    elif [[ "$1" -lt "90" ]]; then
+        echo "󰂋" 
+    elif [[ "$1" -lt "100" ]]; then
+        echo "󰂅"  
+    fi
+}
+
+bat_stat_icon() {
+    case $1 in 
+        "Charging")
+            bat_charge_icon $2;;
+        "Discharging")
+            bat_discharge_icon $2;;
+        "Full")
+            echo "󱈏";;
+        *)
+            echo "󰂑"
+    esac
+}
+
+while [ true ]
+do
+	bat_status=$(cat /sys/class/power_supply/BAT1/status)
+	if [[ $bat_status == "Discharging" ]]; then
+		sleep 5
+	else
+		sleep 1
+	fi	
+	d=$(date '+%u')
+	day=$(day_str $d)
+	bat_cap=$(cat /sys/class/power_supply/BAT1/capacity)	
+	bat_stat=$(bat_stat_icon $bat_status $bat_cap)
+	usr="$(whoami)@$(hostname)"
+	dat=$(date '+%Y/%m/%d')
+	tim=$(date '+%H:%M:%S')
+	xsetroot -name "| $usr | $bat_stat $bat_cap% | $day $dat | $tim |"
+done
