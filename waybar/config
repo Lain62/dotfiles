@@ -3,7 +3,7 @@
     "position": "bottom",
     "modules-left": ["niri/workspaces"],
     "modules-center": [],
-    "modules-right": ["battery", "clock", "tray"],
+    "modules-right": ["tray", "battery", "clock"],
     "battery": {
         "format": "{capacity}% {icon}",
         "format-icons": ["", "", "", "", ""]
@@ -12,18 +12,18 @@
         "format": "{:%a, %d. %b  %H:%M}"
     },
     "tray": {
-    	"icon-size": 20,   	
+        "icon-size": 20,
     },
     "niri/workspaces": {
-    	"format": "{icon}",
-    	"format-icons": {
-    		// Named workspaces
-    		// (you need to configure them in niri)
-    
-    		// Icons by state
-    		"active": "",
-    		"default": ""
-    	}
+        "format": "{icon}",
+        "format-icons": {
+            // Named workspaces
+            // (you need to configure them in niri)
+
+            // Icons by state
+            "active": "",
+            "default": ""
+        }
     },
-    
+
 }

@@ -1,0 +1,3 @@
+#!/bin/bash
+tim=$(date '+%H:%M:%S')
+echo $tim

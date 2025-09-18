@@ -17,9 +17,9 @@ foreground="#F0F0F0"
 highlight="#F8A9B4"
 
 [urgency_normal]
-highlight="#1B2021"
+background="#1B2021"
 foreground="#F0F0F0"
-background="#A24174"
+highlight="#A24174"
 
 [urgency_critical]
 background="#B23350"

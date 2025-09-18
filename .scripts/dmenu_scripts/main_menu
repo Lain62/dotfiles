@@ -20,7 +20,7 @@ open_folder_in() {
     local term="Terminal"
     local yazi="yazi"
     local cmd=""; cmd+="$term\n"; cmd+="$yazi\n"; cmd+="$emacs\n"; cmd+="$emacs_nw"
-    local out=$( echo -e $cmd | dmenu -c -z 150 -noi -p "Open in:")
+    local out=$( echo -e $cmd | dmenu -i -c -z 150 -noi -p "Open in:")
     if [[ $out == $emacs ]]; then
         emacs $1
     elif [[ $out == $emacs_nw ]]; then
@@ -34,13 +34,13 @@ open_folder_in() {
 
 open_project() {
 
-    local out=$( cd ~/Programming/Projects; ls | dmenu -c -z 300 -p "$projects" )
+    local out=$( cd ~/Programming/Projects; ls | dmenu -i -c -z 300 -p "$projects" )
     if [[ -n $out ]]; then        
         open_folder_in "$HOME/Programming/Projects/$out"
     fi 
 }
 
-output=$(echo -e $cmd | dmenu -c -z 200 -p "Main Menu" )
+output=$(echo -e $cmd | dmenu -i -c -z 200 -p "Main Menu" )
 
 if [[ $output == $power ]]; then
     $HOME/.scripts/dmenu_scripts/power_options

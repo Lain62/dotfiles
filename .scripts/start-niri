@@ -1,4 +1,5 @@
 #!/bin/sh
 
 # dbus-run-session niri --session
+pipewire & 
 dbus-launch niri --session

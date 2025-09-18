@@ -14,22 +14,21 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
--- Local Screenshot library
-local screenshot = require("screenshot")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
 -- Runs startup script
-awful.spawn.with_shell("~/startup")
+awful.spawn.with_shell("~/.scripts/input")
+awful.spawn.with_shell("~/.scripts/monitor")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
 if awesome.startup_errors then
-    naughty.notify({ preset = naughty.config.presets.critical,
-                     title = "Oops, there were errors during startup!",
-                     text = awesome.startup_errors })
+   naughty.notify({ preset = naughty.config.presets.critical,
+                    title = "Oops, there were errors during startup!",
+                    text = awesome.startup_errors })
 end
 
 -- Handle runtime errors after startup
@@ -55,7 +54,7 @@ local theme_file = "~/.config/awesome/theme.lua"
 beautiful.init(theme_file)
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = "ghostty"
 editor = os.getenv("EDITOR") or "view_only"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -175,6 +174,8 @@ screen.connect_signal("property::geometry", set_wallpaper)
 -- Adds network manager to systray
 awful.util.spawn("nm-applet")
 
+awful.util.spawn("pipewire")
+
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
@@ -207,14 +208,14 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 24 })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            mylauncher,
+            -- mylauncher,
             s.mytaglist,
             s.mypromptbox,
         },
@@ -224,6 +225,7 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
+            
             s.mylayoutbox,
         },
     }
@@ -240,7 +242,7 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
+    awful.key({ modkey,           }, "/",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
@@ -248,11 +250,6 @@ globalkeys = gears.table.join(
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
-
-	awful.key({}, "Print", screenshot.fullscreen,
-			  {description = "screenshot fullscreen", group="awesome"}),
-	awful.key({ "Shift" }, "Print", screenshot.area,
-			  {description = "screenshot area", group="awesome"}),		
 
     awful.key({ modkey,           }, "j",
         function ()
@@ -544,7 +541,7 @@ client.connect_signal("request::titlebars", function(c)
         end)
     )
 
-    awful.titlebar(c, { size = 20, position = "bottom"}) : setup {
+    awful.titlebar(c, { size = 20, position = "top"}) : setup {
         { -- Left
             awful.titlebar.widget.iconwidget(c),
             buttons = buttons,

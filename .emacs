@@ -118,6 +118,8 @@
 (rc/require 'org-modern)
 (rc/require 'rainbow-mode)
 
+(rc/require 'kdl-mode)
+
 
 (require 'c3-mode)
 (rc/require 'rust-mode)

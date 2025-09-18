@@ -1,6 +1,6 @@
 #!/bin/bash
 
-res=$(echo -e "Lock screen\nShutdown\nReboot" | dmenu -c -z 200 -noi -p "Power Options" )
+res=$(echo -e "Lock screen\nShutdown\nReboot" | dmenu -i -c -z 200 -noi -p "Power Options" )
 if [[ $res == "Shutdown" ]]; then
     loginctl poweroff
 elif [[ $res == "Reboot" ]]; then

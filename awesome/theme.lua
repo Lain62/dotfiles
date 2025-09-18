@@ -4,33 +4,35 @@
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
+local shape = require("gears").shape
 local dpi = xresources.apply_dpi
+local rosevu = require("rosevu")
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
 local theme = {}
 
-theme.font          = "Iosevka 10"
+theme.font          = "ZedMono Nerd Font 14"
 
 theme.wallpaper = "~/Downloads/wallpaper.png"
 
-theme.bg_normal     = "#222222"
-theme.bg_focus      = "#535d6c"
-theme.bg_urgent     = "#ff0000"
-theme.bg_minimize   = "#444444"
+theme.bg_normal     = rosevu.black
+theme.bg_focus      = rosevu.pink
+theme.bg_urgent     = rosevu.red
+theme.bg_minimize   = rosevu.pink_darker
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = "#aaaaaa"
-theme.fg_focus      = "#ffffff"
-theme.fg_urgent     = "#ffffff"
-theme.fg_minimize   = "#ffffff"
+theme.fg_normal     = rosevu.white
+theme.fg_focus      = rosevu.black
+theme.fg_urgent     = rosevu.black
+theme.fg_minimize   = rosevu.black
 
-theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(0)
-theme.border_normal = "#000000"
-theme.border_focus  = "#535d6c"
-theme.border_marked = "#91231c"
+theme.useless_gap   = dpi(4)
+theme.border_width  = dpi(2)
+theme.border_normal = rosevu.pink_darker
+theme.border_focus  = rosevu.pink
+theme.border_marked = rosevu.red
 
 -- There are other variable sets
 -- overriding the default one when
@@ -46,13 +48,15 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
-local taglist_square_size = dpi(4)
+local taglist_square_size =  dpi(6)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
 )
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
+
+theme.taglist_spacing = 8
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -62,6 +66,11 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
 theme.notification_max_width = 300
 theme.notification_max_height = 200
 theme.notification_icon_size = 15
+
+local notif_shape = function(cr, width, height) 
+    shape.rounded_rect(cr, width, height, 10)
+end
+theme.notification_shape = notif_shape
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
