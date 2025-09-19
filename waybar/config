@@ -1,21 +1,114 @@
 {
     "layer": "top",
     "position": "bottom",
-    "modules-left": ["niri/workspaces"],
-    "modules-center": [],
-    "modules-right": ["tray", "battery", "clock"],
+    "margin": "4",
+    "modules-left": ["niri/workspaces", "privacy", "cpu", "temperature", "network", "keyboard-state"],
+    "modules-center": [""],
+    "modules-right": ["tray", "mpd", "pulseaudio", "power-profiles-daemon", "battery", "clock"],
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": {
+            "numlock": " Num {icon} ",
+            "capslock": " Caps {icon} "                                                                                                                                                       
+        },
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    "network": {
+        "format-wifi": "   ({signalStrength}%) {essid}",
+        "max-length": "15",
+        "format-ethernet": "󰈁 {ipaddr}/{cidr}",
+        "format-disconnected": "", //An empty format will hide the module.
+        
+    },
+    "temperature": {
+        "format": "{icon}{temperatureC}°C",
+        "format-icons": [" ", " ", " ", " ", " "]
+    },
+    "cpu": {
+        "format": "  {avg_frequency} {usage}%"  
+    },
+    "privacy": {
+    	"icon-spacing": 4,
+    	"icon-size": 18,
+    	"transition-duration": 250,
+    	"modules": [
+    		{
+    			"type": "screenshare",
+    			"tooltip": true,
+    			"tooltip-icon-size": 24
+    		},
+    		{
+    			"type": "audio-out",
+    			"tooltip": true,
+    			"tooltip-icon-size": 24
+    		},
+    		{
+    			"type": "audio-in",
+    			"tooltip": true,
+    			"tooltip-icon-size": 24
+    		}
+    	],
+    	"ignore-monitor": true,
+    },
+    "power-profiles-daemon": {
+        "format": " {icon} ",
+        "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+    "mpd": {
+        "format": "{consumeIcon}{repeatIcon}{singleIcon}{randomIcon} {stateIcon} 󰝚 {elapsedTime} ",
+        "tooltip-format": "{artist} - {title}",
+        "format-stopped": " 󰓛 󰝚 ",
+        "on-click": "mpc toggle",
+        "on-click-right": "ghostty -e ncmpcpp",
+        "consume-icons": {
+            "on": " " // Icon shows only when "consume" is on
+        },
+        "random-icons": {
+            "on": " "
+        },
+        "repeat-icons": {
+            "on": " "
+        },
+        "single-icons": {
+            "on": "1 "
+        },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        
+    },
     "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{icon} {capacity}%",
+        "design-capacity": true,
+        "format-icons": ["󰂎", "󱊡", "󱊢", "󱊣"]
+    },
+    "pulseaudio": {
+        "format": "{icon}  {volume}%",
+        "format-icons": ["󰝟", "󰕿", "󰖀", "󰕾"],
+        "on-click": "pavucontrol",
     },
     "clock": {
-        "format": "{:%a, %d. %b  %H:%M}"
+        "format": "{:%A, %Y-%m-%d  %H:%M}"
     },
     "tray": {
         "icon-size": 20,
     },
+    "niri/window": {
+        "format": "{title} | {app_id}",
+        "icon": true,
+    },
     "niri/workspaces": {
-        "format": "{icon}",
+        "format": "{index}",
         "format-icons": {
             // Named workspaces
             // (you need to configure them in niri)

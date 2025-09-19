@@ -1,0 +1,68 @@
+* {
+    padding: 1px;
+}
+
+.modules-right {
+        /* background-color: #f8a9b4; */
+    background-color: #30343F;
+    color: #1B2021;
+    border-radius: 5px;
+}
+
+#battery, #tray, #pulseaudio, #clock, #power-profiles-daemon, #mpd, #privacy, #cpu, #temperature, #network, #keyboard-state {
+    background-color: #f8a9b4;
+    border-left-style: solid;
+    border-right-style: solid;
+    color: #1B2021;    
+    border-width: 2px;
+    padding: 0 4px;
+    margin: 1px;
+    border-color: #1B2021;
+    border-radius: 5px;
+}
+
+.modules-center {
+    background-color: #30343F;
+    color: #F0F0F0;
+}
+
+.modules-left {
+    background-color: #30343F;
+    color: #F0F0F0;
+}
+
+window#waybar {
+    background-color: #30343F;
+
+}
+
+#workspaces {
+    background-color: #30343F;
+    color: #f8a9b4;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+}
+
+#workspaces button {
+    border-radius: 0px;
+    padding: 0;
+    color: #F0F0F0;
+}
+
+#workspaces button.focused {
+    background-color: #f8a9b4;
+    color: #1B2021;
+}
+
+
+#workspaces button.active {
+    background-color: #f8a9b4;
+    color: #1B2021;
+}
+
+
+/* #workspaces button.empty { */
+/*     background-color: #30343F; */
+/*     color: #F0F0F0; */
+/* } */

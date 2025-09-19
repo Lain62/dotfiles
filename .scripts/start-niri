@@ -1,5 +1,7 @@
-#!/bin/sh
+#!/bin/bash
 
 # dbus-run-session niri --session
-pipewire & 
-dbus-launch niri --session
+pipewire & mpd $HOME/.mpdconf --no-daemon &
+dbus-launch --exit-with-session niri --session
+
+trap 'kill $(jobs -p) EXIT'
