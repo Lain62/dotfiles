@@ -3,68 +3,68 @@
     "position": "bottom",
     "margin": "4",
     "modules-left": ["niri/workspaces", "privacy", "cpu", "temperature", "network", "keyboard-state"],
-    "modules-center": [""],
+    "modules-center": ["niri/window"],
     "modules-right": ["tray", "mpd", "pulseaudio", "power-profiles-daemon", "battery", "clock"],
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
         "format": {
-            "numlock": " Num {icon} ",
-            "capslock": " Caps {icon} "                                                                                                                                                       
+            "numlock": " 󰎦 {icon} ",
+            "capslock": "󰪛 {icon}"
         },
         "format-icons": {
             "locked": "",
-            "unlocked": ""
+            "unlocked": ""
         }
     },
     "network": {
-        "format-wifi": "   ({signalStrength}%) {essid}",
+        "format-wifi": "  ({signalStrength}%) {essid}",
         "max-length": "15",
         "format-ethernet": "󰈁 {ipaddr}/{cidr}",
         "format-disconnected": "", //An empty format will hide the module.
-        
+
     },
     "temperature": {
         "format": "{icon}{temperatureC}°C",
         "format-icons": [" ", " ", " ", " ", " "]
     },
     "cpu": {
-        "format": "  {avg_frequency} {usage}%"  
+        "format": "  {avg_frequency} {usage}%"
     },
     "privacy": {
-    	"icon-spacing": 4,
-    	"icon-size": 18,
-    	"transition-duration": 250,
-    	"modules": [
-    		{
-    			"type": "screenshare",
-    			"tooltip": true,
-    			"tooltip-icon-size": 24
-    		},
-    		{
-    			"type": "audio-out",
-    			"tooltip": true,
-    			"tooltip-icon-size": 24
-    		},
-    		{
-    			"type": "audio-in",
-    			"tooltip": true,
-    			"tooltip-icon-size": 24
-    		}
-    	],
-    	"ignore-monitor": true,
+        "icon-spacing": 4,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-out",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ],
+        "ignore-monitor": true,
     },
     "power-profiles-daemon": {
-        "format": " {icon} ",
+        "format": "{icon}",
         "format-icons": {
-            "default": "",
-            "performance": "",
-            "balanced": "",
-            "power-saver": ""
+            "default": " ",
+            "performance": " ",
+            "balanced": " ",
+            "power-saver": " "
         }
     },
     "mpd": {
-        "format": "{consumeIcon}{repeatIcon}{singleIcon}{randomIcon} {stateIcon} 󰝚 {elapsedTime} ",
+        "format": "{consumeIcon}{repeatIcon}{singleIcon}{randomIcon} {stateIcon} 󰝚  {elapsedTime} ",
         "tooltip-format": "{artist} - {title}",
         "format-stopped": " 󰓛 󰝚 ",
         "on-click": "mpc toggle",
@@ -85,20 +85,21 @@
             "paused": "",
             "playing": ""
         },
-        
+
     },
     "battery": {
         "format": "{icon} {capacity}%",
-        "design-capacity": true,
+        "design-capacity": false,
         "format-icons": ["󰂎", "󱊡", "󱊢", "󱊣"]
     },
     "pulseaudio": {
-        "format": "{icon}  {volume}%",
+        "format": "{icon} {volume}%",
         "format-icons": ["󰝟", "󰕿", "󰖀", "󰕾"],
         "on-click": "pavucontrol",
     },
     "clock": {
-        "format": "{:%A, %Y-%m-%d  %H:%M}"
+        "format": "{:%A, %Y-%m-%d %H:%M:%S}",
+        "interval": 1,
     },
     "tray": {
         "icon-size": 20,
@@ -108,7 +109,8 @@
         "icon": true,
     },
     "niri/workspaces": {
-        "format": "{index}",
+        "format": "{value}",
+        "current-only": false,
         "format-icons": {
             // Named workspaces
             // (you need to configure them in niri)

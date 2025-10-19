@@ -1,5 +1,7 @@
 * {
     padding: 1px;
+    font-family: ZedMono Nerd Font;
+    font-size: 1.25rem;
 }
 
 .modules-right {
@@ -13,7 +15,7 @@
     background-color: #f8a9b4;
     border-left-style: solid;
     border-right-style: solid;
-    color: #1B2021;    
+    color: #1B2021;
     border-width: 2px;
     padding: 0 4px;
     margin: 1px;
@@ -33,7 +35,6 @@
 
 window#waybar {
     background-color: #30343F;
-
 }
 
 #workspaces {

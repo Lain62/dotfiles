@@ -47,6 +47,12 @@ theme.border_marked = rosevu.red
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 
+-- local tag_shape = function(cr, width, height)
+--     shape.rounded_rect(cr, width, height, 5)
+-- end
+-- theme.taglist_shape = tag_shape
+-- theme.taglist_spacing = 0
+
 -- Generate taglist squares:
 local taglist_square_size =  dpi(6)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
@@ -56,7 +62,7 @@ theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
 
-theme.taglist_spacing = 8
+theme.taglist_spacing = 0
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -67,10 +73,11 @@ theme.notification_max_width = 300
 theme.notification_max_height = 200
 theme.notification_icon_size = 15
 
-local notif_shape = function(cr, width, height) 
+local notif_shape = function(cr, width, height)
     shape.rounded_rect(cr, width, height, 10)
 end
 theme.notification_shape = notif_shape
+
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]

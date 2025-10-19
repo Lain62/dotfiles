@@ -18,6 +18,12 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
+-- hotkeys_popup.add_rules_for_terminal({ rule = { name = "no window ever has a name like this" }})
+-- lib.awful.hotkeys_popup.tmux.add_rules_for_terminal({ rule = { name = { "no window ever has a name like this" }}})
+
+-- Screenshot tool
+local screenshot = require("screenshot")
+
 -- Runs startup script
 awful.spawn.with_shell("~/.scripts/input")
 awful.spawn.with_shell("~/.scripts/monitor")
@@ -30,6 +36,15 @@ if awesome.startup_errors then
                     title = "Oops, there were errors during startup!",
                     text = awesome.startup_errors })
 end
+
+-- naugthy notif
+
+
+-- Creates icons on notifs
+-- naughty.config.notify_callback = function(n)
+--   n.icon = n.icon or n.app_icon
+--   return true
+-- end
 
 -- Handle runtime errors after startup
 do
@@ -68,23 +83,32 @@ modkey = "Mod4"
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
     awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
     awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
 -- }}}
+
+-- awful.layout.layouts = {
+--     awful.layout.suit.floating,
+--     awful.layout.suit.tile,
+--     awful.layout.suit.tile.left,
+--     awful.layout.suit.tile.bottom,
+--     awful.layout.suit.tile.top,
+--     awful.layout.suit.fair,
+--     awful.layout.suit.fair.horizontal,
+--     awful.layout.suit.spiral,
+--     awful.layout.suit.spiral.dwindle,
+--     awful.layout.suit.max,
+--     awful.layout.suit.max.fullscreen,
+--     awful.layout.suit.magnifier,
+--     awful.layout.suit.corner.nw,
+--     -- awful.layout.suit.corner.ne,
+--     -- awful.layout.suit.corner.sw,
+--     -- awful.layout.suit.corner.se,
+-- }
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -208,7 +232,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 24 })
+    s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 32 })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -225,7 +249,6 @@ awful.screen.connect_for_each_screen(function(s)
             mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
-            
             s.mylayoutbox,
         },
     }
@@ -339,7 +362,14 @@ globalkeys = gears.table.join(
               {description = "lua execute prompt", group = "awesome"}),
     -- Menubar
     awful.key({ modkey }, "d", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+       {description = "show the menubar", group = "launcher"}),
+    -- Screenshots
+    awful.key({}, "Print", function() screenshot.fullscreen() end,
+       {description = "Screenshot the screen", group = "awesome"}),
+    awful.key({ "Shift" }, "Print", function() screenshot.area() end,
+       {description = "Screenshot an area", group = "awesome"}),
+    awful.key({ modkey }, "Print", function() screenshot.window() end,
+       {description = "Screenshot a window", group = "awesome"})
 )
 
 clientkeys = gears.table.join(
@@ -353,7 +383,7 @@ clientkeys = gears.table.join(
               {description = "close", group = "client"}),
     awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
               {description = "toggle floating", group = "client"}),
-    awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
+    awful.key({ modkey, "Shift" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
               {description = "move to master", group = "client"}),
     awful.key({ modkey,           }, "o",      function (c) c:move_to_screen()               end,
               {description = "move to screen", group = "client"}),
@@ -575,3 +605,5 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
