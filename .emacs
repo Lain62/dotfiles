@@ -31,8 +31,8 @@
 (ido-mode 1)
 (ido-everywhere 1)
 (ido-ubiquitous-mode 1)
-(setq magit-completing-read-function 'magit-ido-completing-read)
-(global-whitespace-mode 1)
+;; (setq magit-completing-read-function 'magit-ido-completing-read)
+;; (global-whitespace-mode 1)
 
 (rc/require 'ido-yes-or-no)
 (ido-yes-or-no-mode 1)
@@ -114,6 +114,7 @@
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 (rc/require 'go-mode)
 (rc/require 'lua-mode)
+(rc/require 'gdscript-mode)
 
 (rc/require 'org-modern)
 (rc/require 'rainbow-mode)
