@@ -1,5 +1,5 @@
 ;;Rosevu Theme
-(deftheme rosevu "Ivulai/lain62 theme")
+(deftheme rosevu-dark "Ivulai/lain62 theme")
 (let ((rosevu-black-darker "#1B2021")
       (rosevu-black "#30343F")
       (rosevu-pink "#f8a9b4")

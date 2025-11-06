@@ -3,6 +3,6 @@
 # dbus-run-session niri --session
 # pipewire & 
 mpd $HOME/.mpdconf --no-daemon &
-dbus-launch --exit-with-session niri --session
+dbus-launch --exit-with-session hyprland
 
 trap 'kill $(jobs -p) EXIT'

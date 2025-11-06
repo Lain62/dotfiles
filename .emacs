@@ -10,22 +10,31 @@
 (column-number-mode 1)
 (show-paren-mode 1)
 (global-display-line-numbers-mode 1)
-(setq-default indent-tabs-mode nil)
+(setq-default display-line-numbers 'relative)
+(setq menu-bar-mode 0)
+(setq tool-bar-mode 0)
+(setq scroll-bar-mode 0)
+(setq column-number-mode 1)
+(setq show-paren-mode 1)
 (setq display-line-numbers 'relative)
+(setq global-display-line-numbers-mode 1)
+(setq-default indent-tabs-mode nil)
 (setq backup-directory-alist '(("." . "~/.emacs.saves")))
 (setq custom-file "~/.emacs.custom.el")
 
 (defun vu/get-default-font ()
   (cond
    ((eq system-type 'windows-nt) "Iosevka NF-20")
-   ((eq system-type 'gnu/linux) "ZedMono Nerd Font-18")))
+   ((eq system-type 'gnu/linux) "BigBlueTerm437 Nerd Font Mono-18")))
+
 
 (set-face-attribute 'default nil :font (vu/get-default-font))
 (setq dired-dwim-target t)
 
 ;;(rc/require-theme 'phoenix-dark-pink)
-(require 'rosevu-theme)
-(load-theme 'rosevu t)
+;; (require 'rosevu-dark-theme)
+(require 'rosevu-light-theme)
+(load-theme 'rosevu-light t)
 
 (rc/require 'ido-completing-read+)
 (ido-mode 1)
@@ -38,6 +47,7 @@
 (ido-yes-or-no-mode 1)
 
 ;; (electric-pair-mode 1)
+(electric-indent-mode 0)
 (rc/require 'paredit)
 (add-hook 'after-init-hook 'paredit-mode)
 ;; Disabled for windows cuz i cant get it to work
@@ -59,6 +69,7 @@
 (require 'simpc-mode)
 (add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
 (require 'squirrel-mode)
+(require 'umka-mode)
 (require 'odin-mode)
 ;; (setq ruby-indent-level 4)
 (setq-default tab-width 4)
@@ -82,6 +93,8 @@
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 ;; add support for astro even tho its not officially supported
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 
 (rc/require 'smex)
 (global-set-key (kbd "M-x") 'smex)
@@ -112,14 +125,20 @@
 ;; (require 'dumb-jump)
 (rc/require 'dumb-jump)
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
 (rc/require 'go-mode)
 (rc/require 'lua-mode)
 (rc/require 'gdscript-mode)
+(rc/require 'kdl-mode)
 
 (rc/require 'org-modern)
+(setq org-display-remote-inline-images t)
 (rc/require 'rainbow-mode)
 
-(rc/require 'kdl-mode)
+(rc/require 'vterm)
+
+;; (when (fboundp 'windmove-default-keybindings)
+;;   (windmove-default-keybindings))
 
 (require 'c3-mode)
 (rc/require 'rust-mode)

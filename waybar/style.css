@@ -8,7 +8,7 @@
         /* background-color: #f8a9b4; */
     background-color: #30343F;
     color: #1B2021;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 #battery, #tray, #pulseaudio, #clock, #power-profiles-daemon, #mpd, #privacy, #cpu, #temperature, #network, #keyboard-state {
@@ -20,7 +20,7 @@
     padding: 0 4px;
     margin: 1px;
     border-color: #1B2021;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .modules-center {
@@ -40,7 +40,7 @@ window#waybar {
 #workspaces {
     background-color: #30343F;
     color: #f8a9b4;
-    border-radius: 5px;
+    border-radius: 2px;
     border-style: solid;
     border-width: 2px;
 }

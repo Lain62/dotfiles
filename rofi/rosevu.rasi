@@ -1,0 +1,66 @@
+/******************************************************************************
+ * Rosevu Theme
+ * Based on purple.rasi
+ * By Lain62
+ ******************************************************************************/
+* {
+    font: "BigBlueTerm437 Nerd Font Mono 18";
+    rosevu-black: #30343F;
+    rosevu-cream: #FFD9DA;
+    rosevu-pink: #f8a9b4;
+    background-color: @rosevu-black;
+    color: @rosevu-cream;
+    border-color: @rosevu-pink;
+}
+
+window {
+    background-color: @rosevu-black;
+    border:           4px;
+    padding:          4px;
+}
+
+mainbox {
+    border:  0;
+    padding: 0;
+}
+
+prompt {
+    spacing: 0;
+    margin: 0;
+    border: 4px;
+    background-color: @rosevu-pink;
+    text-color: @rosevu-black;
+}
+
+inputbar {
+    border: 4px;
+    spacing:    0px;
+    background-color: @rosevu-pink;
+    margin: 0;
+    padding: 0px;
+}
+
+entry {
+    spacing: 0;
+    margin: 0;
+}
+
+element {
+    border:  0;
+    padding: 0px;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+element.selected.normal {
+    background-color: @rosevu-pink;
+    text-color: @rosevu-black;
+}
+element.selected.active {
+    background-color: @rosevu-pink;
+    text-color: @rosevu-black;
+}
+

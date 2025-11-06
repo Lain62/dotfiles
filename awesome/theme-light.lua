@@ -23,19 +23,19 @@ theme.font = "BigBlueTerm437 Nerd Font 16"
 
 theme.wallpaper = "~/Downloads/wallpaper.png"
 
-theme.bg_normal     = rosevu.black
+theme.bg_normal     = rosevu.gray
 theme.bg_focus      = rosevu.pink
 theme.bg_urgent     = rosevu.red
 theme.bg_minimize   = rosevu.pink_darker
 theme.bg_systray    = theme.bg_normal
 
-theme.fg_normal     = rosevu.white
+theme.fg_normal     = rosevu.black
 theme.fg_focus      = rosevu.black
 theme.fg_urgent     = rosevu.black
 theme.fg_minimize   = rosevu.black
 
 theme.useless_gap   = dpi(0)
-theme.border_width  = dpi(2)
+theme.border_width  = dpi(1)
 theme.border_normal = rosevu.pink_darker
 theme.border_focus  = rosevu.pink
 theme.border_marked = rosevu.red
