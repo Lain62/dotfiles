@@ -18,7 +18,7 @@ local window_shape = function(cr, width, height)
 end
 
 -- theme.font          = "ZedMono Nerd Font 16"
-theme.font = "BigBlueTerm437 Nerd Font 16" 
+theme.font = "Iosevka Nerd Font Mono 18" 
 -- theme.font = "GohuFont uni11 Nerd Font 16"
 
 theme.wallpaper = "~/Downloads/wallpaper.png"

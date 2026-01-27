@@ -22,10 +22,12 @@
 # font-family = Iosevka
 # window-padding-x = 2
 
-font-family = BigBlueTerm437 Nerd Font
+# font-family = BigBlueTerm437 Nerd Font
+font-family = Iosevka Nerd Font Mono
 font-size = 18
 
-theme = ayu
+# theme = ayu_light
+theme = Calamity
 
 window-decoration = none
 

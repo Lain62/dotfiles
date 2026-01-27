@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+$HOME/.scripts/input
+$HOME/.scripts/monitor
+
+mpd $HOME/.mpdconf --no-daemon &
+nm-applet &
+pipewire &
+dunst &

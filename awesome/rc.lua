@@ -244,7 +244,7 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Adds network manager to systray
 awful.util.spawn("nm-applet")
-awful.util.spawn("pipewire")
+-- awful.util.spawn("pipewire")
 
 awful.screen.connect_for_each_screen(function(s)
       -- Wallpaper
@@ -281,7 +281,7 @@ awful.screen.connect_for_each_screen(function(s)
       }
 
       -- Create the wibox
-      s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 32, ontop = true})
+      s.mywibox = awful.wibar({ position = "bottom", screen = s, height = 32})
 
       -- Add widgets to the wibox
       s.mywibox:setup {
@@ -318,10 +318,11 @@ end)
 -- }}}
 
 -- {{{ Mouse bindings
+-- Im not sure what these are for
 root.buttons(gears.table.join(
-                awful.button({ }, 3, function () mymainmenu:toggle() end),
-                awful.button({ }, 4, awful.tag.viewnext),
-                awful.button({ }, 5, awful.tag.viewprev)
+                -- awful.button({ }, 3, function () mymainmenu:toggle() end),
+                -- awful.button({ }, 4, awful.tag.viewnext),
+                -- awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -710,26 +711,6 @@ end)
 --     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 -- end)
 
-client.connect_signal("focus", function(c) 
-                         c.border_color = beautiful.border_focus 
-                         if c and c.fullscreen then
-                            -- Hide wibox if the focused client is fullscreen
-                            c.screen.mywibox.visible = false
-                         else
-                            -- Show wibox otherwise
-                            c.screen.mywibox.visible = true
-                         end
-end)
+client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
-client.connect_signal("property::fullscreen", function(c)
-    if c and c.focus then -- Only act if the client is focused
-        if c.fullscreen then
-            c.screen.mywibox.visible = false
-        else
-            c.screen.mywibox.visible = true
-        end
-    end
-end)
-

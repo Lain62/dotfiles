@@ -11,6 +11,7 @@
 (show-paren-mode 1)
 (global-display-line-numbers-mode 1)
 (setq-default display-line-numbers 'relative)
+;; (display-line-numbers 'relative)
 (setq menu-bar-mode 0)
 (setq tool-bar-mode 0)
 (setq scroll-bar-mode 0)
@@ -25,7 +26,8 @@
 (defun vu/get-default-font ()
   (cond
    ((eq system-type 'windows-nt) "Iosevka NF-20")
-   ((eq system-type 'gnu/linux) "BigBlueTerm437 Nerd Font Mono-18")))
+   ;; ((eq system-type 'gnu/linux) "BigBlueTerm437 Nerd Font Mono-18")))
+   ((eq system-type 'gnu/linux) "CaskaydiaMono Nerd Font Mono-20")))
 
 
 (set-face-attribute 'default nil :font (vu/get-default-font))
@@ -33,8 +35,10 @@
 
 ;;(rc/require-theme 'phoenix-dark-pink)
 ;; (require 'rosevu-dark-theme)
-(require 'rosevu-light-theme)
-(load-theme 'rosevu-light t)
+;; (require 'rosevu-dark-theme)
+;; (load-theme 'rosevu-dark t)
+(require 'brushvu-theme)
+(load-theme 'brushvu t)
 
 (rc/require 'ido-completing-read+)
 (ido-mode 1)
@@ -95,6 +99,7 @@
 (add-to-list 'auto-mode-alist '("\\.astro\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.rhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.gohtml\\'" . web-mode))
 
 (rc/require 'smex)
 (global-set-key (kbd "M-x") 'smex)
@@ -142,6 +147,12 @@
 
 (require 'c3-mode)
 (rc/require 'rust-mode)
+;; (rc/require 'olivetti)
+;; (defun centered-mode()
+;;   (olivetti-mode 1)
+;;   (olivetti-set-width 100))
+;; (add-hook 'prog-mode-hook 'centered-mode)
+
 (setq whitespace-style '(face tabs spaces trailing space-before-tab newline indentation empty space-after-tab space-mark tab-mark))
 
 ;; (add-hook 'd-mode-hook
