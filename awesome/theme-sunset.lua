@@ -6,7 +6,8 @@ local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local shape = require("gears").shape
 local dpi = xresources.apply_dpi
-local rosevu = require("rosevu")
+-- local rosevu = require("rosevu")
+local sunset = require("sunset")
 
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
@@ -24,23 +25,22 @@ theme.font = "CaskaydiaMono Nerd Font Mono 14"
 
 theme.wallpaper = "~/Downloads/G-vZbkvW4AE1G1x.jpeg"
 
+theme.bg_normal     = sunset.black
+theme.bg_focus      = sunset.orange
+theme.bg_urgent     = sunset.red
+theme.bg_minimize   = sunset.purple
+theme.bg_systray    = sunset.black
 
-theme.bg_normal     = rosevu.gray
-theme.bg_focus      = rosevu.pink
-theme.bg_urgent     = rosevu.red
-theme.bg_minimize   = rosevu.pink_darker
-theme.bg_systray    = theme.bg_normal
-
-theme.fg_normal     = rosevu.black
-theme.fg_focus      = rosevu.black
-theme.fg_urgent     = rosevu.black
-theme.fg_minimize   = rosevu.black
+theme.fg_normal     = sunset.white
+theme.fg_focus      = sunset.white
+theme.fg_urgent     = sunset.white
+theme.fg_minimize   = sunset.white
 
 theme.useless_gap   = dpi(0)
 theme.border_width  = dpi(1)
-theme.border_normal = rosevu.pink_darker
-theme.border_focus  = rosevu.pink
-theme.border_marked = rosevu.red
+theme.border_normal = sunset.purple
+theme.border_focus  = sunset.orange
+theme.border_marked = sunset.red
 
 -- There are other variable sets
 -- overriding the default one when
@@ -77,13 +77,13 @@ theme.taglist_spacing = 0
 -- notification_[bg|fg]
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
-theme.notification_width = 300
-theme.notification_height = 50
-theme.notification_max_width = 500
-theme.notification_max_height = 500
+theme.notification_width = 400
+theme.notification_height = 150
+theme.notification_max_width = 600
+theme.notification_max_height = 700
 theme.notification_border_width = dpi(8)
-theme.notification_border_color = rosevu.pink
-theme.notification_icon_size = 32
+theme.notification_border_color = sunset.orange
+theme.notification_icon_size = 64
 
 local notif_shape = function(cr, width, height)
     shape.rounded_rect(cr, width, height, 10)

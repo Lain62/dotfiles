@@ -2,7 +2,7 @@
 (deftheme brushvu "Ivulai/lain62 theme")
 (let ((brushvu-black "#4c1f31")
       (brushvu-radical "#ff3366")
-      (brushvu-white "#ffeff8")
+      (brushvu-white "#ffeff8")      
       (brushvu-brown "#8e473b")
       (brushvu-cream "#f4aea3"))
   

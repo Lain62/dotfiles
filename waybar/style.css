@@ -1,17 +1,17 @@
 * {
     padding: 1px;
-    font-family: ZedMono Nerd Font;
-    font-size: 1.25rem;
+    font-family: CaskaydiaMono Nerd Font Mono;
+    font-size: 1rem;
 }
 
 .modules-right {
-        /* background-color: #f8a9b4; */
+    /* background-color: #f8a9b4; */
     background-color: #30343F;
     color: #1B2021;
     border-radius: 2px;
 }
 
-#battery, #tray, #pulseaudio, #clock, #power-profiles-daemon, #mpd, #privacy, #cpu, #temperature, #network, #keyboard-state {
+#battery, #tray, #pulseaudio, #clock, #power-profiles-daemon, #mpd, #privacy, #cpu, #temperature, #network, #keyboard-state, #tags button {
     background-color: #f8a9b4;
     border-left-style: solid;
     border-right-style: solid;
@@ -37,7 +37,7 @@ window#waybar {
     background-color: #30343F;
 }
 
-#workspaces {
+#workspaces, #tags {
     background-color: #30343F;
     color: #f8a9b4;
     border-radius: 2px;
@@ -45,23 +45,30 @@ window#waybar {
     border-width: 2px;
 }
 
-#workspaces button {
+#workspaces button, #tags button {
     border-radius: 0px;
     padding: 0;
     color: #F0F0F0;
 }
 
-#workspaces button.focused {
+#workspaces button.focused, #tags button.focused {
     background-color: #f8a9b4;
     color: #1B2021;
 }
 
 
-#workspaces button.active {
-    background-color: #f8a9b4;
+#workspaces button.active, #tags button.occupied {
+    background-color: #b4f8a9;
     color: #1B2021;
 }
 
+/* #tags button { */
+/*   display: none; */
+/* } */
+
+/* #tags button.occupied, #tags button.focused, #tags button.urgent { */
+/*   display: block; */
+/* } */
 
 /* #workspaces button.empty { */
 /*     background-color: #30343F; */

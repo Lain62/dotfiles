@@ -2,8 +2,8 @@
     "layer": "top",
     "position": "bottom",
     "margin": "4",
-    "modules-left": ["niri/workspaces", "privacy", "cpu", "temperature", "network", "keyboard-state"],
-    "modules-center": ["niri/window"],
+    "modules-left": ["dwl/tags", "privacy", "cpu", "temperature", "network", "keyboard-state"],
+    "modules-center": ["dwl/window"],
     "modules-right": ["tray", "mpd", "pulseaudio", "power-profiles-daemon", "battery", "clock"],
     "keyboard-state": {
         "numlock": true,
@@ -18,7 +18,7 @@
         }
     },
     "network": {
-        "format-wifi": "  ({signalStrength}%) {essid}",
+        "format-wifi": "{signalStrength}% {essid}",
         "max-length": "15",
         "format-ethernet": "󰈁 {ipaddr}/{cidr}",
         "format-disconnected": "", //An empty format will hide the module.
@@ -26,10 +26,10 @@
     },
     "temperature": {
         "format": "{icon}{temperatureC}°C",
-        "format-icons": [" ", " ", " ", " ", " "]
+        "format-icons": ["", "", "", "", ""]
     },
     "cpu": {
-        "format": "  {avg_frequency} {usage}%"
+        "format": "{avg_frequency}GHz {usage}%"
     },
     "privacy": {
         "icon-spacing": 4,
@@ -57,10 +57,10 @@
     "power-profiles-daemon": {
         "format": "{icon}",
         "format-icons": {
-            "default": " ",
-            "performance": " ",
-            "balanced": " ",
-            "power-saver": " "
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
         }
     },
     "mpd": {
@@ -120,5 +120,8 @@
             "default": ""
         }
     },
-
+    "dwl/window": {
+      "format": "{title} | {app_id} | {layout}",
+      "icon": true
+    }
 }

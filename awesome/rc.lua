@@ -11,9 +11,9 @@ local wibox = require("wibox")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library, disabling this for dunst
-local _dbus = dbus; dbus = nil 
+-- local _dbus = dbus; dbus = nil 
 local naughty = require("naughty")
-dbus = _dbus
+-- dbus = _dbus
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
@@ -95,12 +95,12 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-local theme_file = "~/.config/awesome/theme-light.lua"
+local theme_file = "~/.config/awesome/theme-sunset.lua"
 
 beautiful.init(theme_file)
 
 -- This is used later as the default terminal and editor to run.
-terminal = "ghostty"
+terminal = "alacritty"
 editor = os.getenv("EDITOR") or "view_only"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -156,14 +156,18 @@ myawesomemenu = {
 
 mymenu = awful.menu({ items = {
                          { "Task Manager", terminal .. " -e btop"},
-                         { "Music Player", {
-                              { "Euphonica", "flatpak run io.github.htkhiem.Euphonica" },
-                              { "ncmpcpp", terminal .. " -e ncmpcpp" }
-                         }},
+                         -- TODO: add mpd or sumn idk
+                         -- { "Music Player", {
+                         --      { "Euphonica", "flatpak run io.github.htkhiem.Euphonica" },
+                         --      { "ncmpcpp", terminal .. " -e ncmpcpp" }
+                         -- }},
                          { "Power Options", {
-                              { "Lock Screen", "i3lock" },
-                              { "Reboot", "loginctl reboot" },
-                              { "Shutdown", "loginctl poweroff" }
+                              { "Lock Screen", "xsecurelock" },
+                              { "Sleep", "systemctl sleep" },
+                              -- { "Suspend", "systemctl suspend" },
+                              -- { "Hibernate", "systemctl hibernate" },
+                              { "Reboot", "systemctl reboot" },
+                              { "Shutdown", "systemctl poweroff" }
                          }}
                    }})
 
@@ -171,6 +175,7 @@ mymenu = awful.menu({ items = {
 --                                     { "open terminal", terminal }
 --                                   }
 --                         })
+
 
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,                           
                                      menu = mymenu })
@@ -243,8 +248,11 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 -- Adds network manager to systray
-awful.util.spawn("nm-applet")
+-- awful.util.spawn("nm-applet")
 -- awful.util.spawn("pipewire")
+awful.spawn.once("nm-applet")
+-- awful.spawn.once("dunst")
+-- awful.spawn.once("pipewire")
 
 awful.screen.connect_for_each_screen(function(s)
       -- Wallpaper
@@ -633,6 +641,14 @@ awful.rules.rules = {
      }
    },
 
+   -- { rule_any = {
+   --      class = { "waterfox"}
+   -- },
+   --   properties = {
+   --      titlebars_enabled = false
+   --   }
+   -- }
+
    -- Set Firefox to always map on the tag named "2" on screen 1.
    -- { rule = { class = "Firefox" },
    --   properties = { screen = 1, tag = "2" } },
@@ -714,3 +730,41 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+
+-- prevent wibox from obstructing fullscreen window clients
+client.connect_signal("focus", function(c)
+   if c.fullscreen then
+      c.screen.mywibox.visible = false
+   else
+      c.screen.mywibox.visible = true
+   end
+end)
+
+
+-- client.connect_signal("property::maximized", function(c)
+--   if c.maximized then
+--       awful.titlebar.hide(c)
+--       c:geometry{c.screen.workarea}
+--   else
+--       awful.titlebar.show(c)
+--       c:geometry{c.screen.workarea}
+--   end 
+-- end)
+
+client.connect_signal("property::fullscreen", function(c)
+  if c.fullscreen then
+      awful.titlebar.hide(c)
+      c.screen.mywibox.visible = false
+      c:geometry{c.screen.workarea}
+      -- c:emit_signal("fullscreen::used")
+  else
+      awful.titlebar.show(c)
+      c.screen.mywibox.visible = true
+      c:geometry{c.screen.workarea}
+      -- c:emit_signal("fullscreen::unused") -- 
+      -- c.maximized
+  end 
+end)
+
+-- screen.connect_signal("fullscreen::used", function())
